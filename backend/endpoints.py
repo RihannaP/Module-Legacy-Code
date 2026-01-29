@@ -208,6 +208,10 @@ def home_timeline():
 
     # Combine own blooms with followed blooms
     all_blooms = followed_blooms + own_blooms
+    all_blooms = [
+    bloom for bloom in all_blooms
+    if len(bloom.content) <= MAX_BLOOM_LENGTH
+]
 
     # Sort by timestamp (newest first)
     sorted_blooms = list(
