@@ -1,3 +1,4 @@
+import { apiService } from "../index.mjs";
 /**
  * Create a bloom component
  * @param {string} template - The ID of the template to clone
