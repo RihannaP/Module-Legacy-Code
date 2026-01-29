@@ -31,7 +31,16 @@ def get_followed_usernames(follower: User) -> List[str]:
         rows = cur.fetchall()
         return [row[0] for row in rows]
 
-
+def unfollow(follower: User, followee: User):
+    with db_cursor() as cur:
+        cur.execute(
+            "DELETE FROM follows WHERE follower = %(follower_id)s AND followee = %(followee_id)s",
+            dict(
+                follower_id=follower.id,
+                followee_id=followee.id,
+            ),
+        )
+        
 def get_inverse_followed_usernames(followee: User) -> List[str]:
     """get_followed_usernames returns a list of usernames followed by follower."""
     with db_cursor() as cur:
